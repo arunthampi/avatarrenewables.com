@@ -9,7 +9,7 @@
   text-align: center;
   padding-bottom: 40px;
   color: #fff;
-  text-shadow: #888 0.01em 0.05em 0;
+  text-shadow: rgb(111, 191, 77) 0.01em 0.05em 0.01em;
 }
 
 #main h2 {
@@ -17,8 +17,9 @@
   font-size: 2em;
   text-align: center;
   font-weight: normal;
-  padding-bottom: 40px;
+  padding-bottom: 20px;
   opacity: 0;
+  color: rgb(111, 191, 77);
 }
 
 #main h3 {
@@ -27,6 +28,7 @@
   font-weight: normal;
   text-align: center;
   opacity: 0;
+  color: rgb(111, 191, 77);
 }
 
 #default-container {
