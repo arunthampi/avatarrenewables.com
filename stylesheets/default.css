@@ -9,7 +9,7 @@
   text-align: center;
   padding-bottom: 40px;
   color: #fff;
-  text-shadow: 0 0 0 #888;
+  text-shadow: #888 0.01em 0.05em 0;
 }
 
 #main h2 {
