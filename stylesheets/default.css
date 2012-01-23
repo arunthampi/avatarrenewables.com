@@ -12,7 +12,8 @@ body {
   text-align: center;
   padding-bottom: 40px;
   color: #fff;
-  text-shadow: #555 0.01em 0.05em 0.01em;
+  text-shadow: #555 0.01em 0.05em 0.18em;
+  opacity: 0;
 }
 
 #main h2 {
