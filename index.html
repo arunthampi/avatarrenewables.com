@@ -6,40 +6,68 @@
    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
    <title>Avatar Renewables &ndash; The Future, Today</title>
    <link href='http://fonts.googleapis.com/css?family=Port+Lligat+Slab' rel='stylesheet' type='text/css'>
+
+   <link rel="stylesheet" href="/stylesheets/nivo/themes/default.css" type="text/css" media="screen" />
+   <link rel="stylesheet" href="/stylesheets/nivo/nivo-slider.css" type="text/css" media="screen" />
+
    <link href="/stylesheets/bootstrap.min.css" media="screen" rel="stylesheet" type="text/css" />
    <link href="/stylesheets/default.css" media="screen" rel="stylesheet" type="text/css" />
 
    <script type='text/javascript' src='/javascripts/jquery.min.js'></script>
    <script type='text/javascript' src='/javascripts/jquery.animate-textshadow.min.js'></script>
+   <script type='text/javascript' src='/javascripts/jquery.nivo.slider.pack.js'></script>
 </head>
 <body>
 
 <div class="container" id="main">
-  <section id="default">
+  <section id="header">
     <div class="row">
-      <div class="span16" id="main">
-        <h1>avatar renewables</h1>
-        <h2>the future &middot; today</h2>
-        <h3>for more information, contact <a href="mailto:hello@avatarrenewables.com">hello@avatarrenewables.com</a></h3>
+      <div class="span6" id="title">
+        <h1><a href="/">avatar renewables</a></h1>
+      </div>
+
+      <div class="span10" id="nav">
+        <ul>
+          <li><a href="/contact.html">contact</a></li>
+          <li><a href="/research.html">research</a></li>
+          <li><a href="/about.html">about</a></li>
+          <li><a href="/" class="selected">home</a></li>
+        </ul>
       </div>
     </div>
   </section>
+
+  <section id="body">
+    <div class="row">
+      <div class="span7">
+        <p>We are a clean-energy consultancy specializing in solutions which will reduce our dependence on fossil fuels in a very impactful way.</p>
+        <p>We are a <a href="/about.html">team of battle-hardened industry veterans</a> with tons of experience in managing and deploying clean-energy solutions in India, the Middle East and Europe. Our core product is based around <a href="/research.html">path-breaking research</a> conducted by the University of Newcastle and is patent-pending.</p>
+        <p>Want to get in touch?</p>
+        <p>
+          <a href="mailto:hello@avatarrenewables.com" class="btn large default">Let's Talk!</a>
+        </p>
+      </div>
+
+      <div class="span9">
+        <div id="splash-images" class="nivoSlider">
+          <img src="/images/splash/sun.avatar.png" alt="Solar Energy" height="360" data-transition="boxRain" />
+          <img src="/images/splash/wind.avatar.png" alt="Wind Farms" height="360" data-transition="boxRain" />
+          <img src="/images/splash/water.avatar.png" alt="Hydro Energy" height="360" data-transition="boxRain" />
+        </div>
+      </div>
+    </div>
+  </section>
+
 </div>
 
 <script type="text/javascript">
 $(document).ready(function() {
-  $('#main h1').animate({
-    opacity: 1.0,
-  }, 2000, function() {
-    $('#main h2').animate({
-      opacity: 1.0
-    }, 850, function() {
-      $('#main h3').animate({
-        opacity: 1.0
-      }, 850, function() {});
-    });
+  $('#splash-images').nivoSlider({
+    pauseOnHover: false,
+    directionNav: false
   });
-});
+})
+
 </script>
 
 <noscript>
@@ -54,7 +82,6 @@ $(document).ready(function() {
       opacity: 1.0;
     }
   </style>
-
 </noscript>
 
 </body>

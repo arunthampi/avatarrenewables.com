@@ -1,50 +1,91 @@
 body {
   background-color: rgb(111, 191, 77);
 }
-#main {
-  padding-top: 120px;
+
+#header {
+  border-bottom: 1px solid #fff;
 }
 
-#main h1 {
+#body {
+  padding-top: 40px;
+  color: #f5f5f5;
+  font-size: 18px;
+}
+
+#splash-images {
+  border: 3px solid #f5f5f5;
+  width: 480px;
+  margin-left: 34px;
+
+     -moz-box-shadow: 0 0 15px #555;
+  -webkit-box-shadow: 0 0 15px #555;
+          box-shadow: 0 0 15px #555;
+}
+
+.nivo-controlNav {
+  display: none;
+}
+
+#body h1,
+#body h2,
+#body h3,
+#body h4 {
+  color: #f5f5f5;
+}
+
+#body p {
+  padding-top: 15px;
+  font-size: 16px;
+  line-height: 24px;
+}
+
+#main {
+  padding-top: 20px;
+}
+
+#title h1 {
   width: 100%;
   font-family: 'Port Lligat Slab', cursive;
-  font-size: 6em;
-  text-align: center;
-  padding-bottom: 40px;
-  color: #fff;
+  font-size: 2.4em;
   text-shadow: #555 0.01em 0.05em 0.18em;
-  opacity: 0;
+  margin-bottom: 5px;
 }
 
-#main h2 {
-  width: 100%;
-  font-size: 2em;
-  text-align: center;
-  font-weight: normal;
-  padding-bottom: 20px;
-  opacity: 0;
+#title h1 a {
   color: #fff;
 }
 
-#main h3 {
-  width: 100%;
-  font-size: 1em;
-  font-weight: normal;
-  text-align: center;
-  opacity: 0;
+#title h1 a:hover {
+  text-decoration: none;
+}
+
+#nav {
+  text-align: right;
+}
+
+#nav ul {
+  list-style: none;
+  padding-top: 12px;
+}
+
+#nav ul li a {
+  float: right;
+  padding: 0 1.8em;
+  font-family: 'Port Lligat Slab', cursive;
+  font-size: 1.8em;
   color: #fff;
+}
+
+#nav ul li a:hover,
+#nav ul li a.selected {
+  text-shadow: #000 0.01em 0.05em 0.2em;
+  text-decoration: none;
+}
+
+#nav ul li:first-child a{
+  padding-right: 0;
 }
 
 #default-container {
   margin: 0 auto;
-}
-
-#about h3 {
-  padding-top: 2px;
-  color: #888;
-  font-size: 16px;
-}
-
-#about h3 strong {
-  text-transform: uppercase;
 }
