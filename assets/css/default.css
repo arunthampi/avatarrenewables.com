@@ -1,0 +1,51 @@
+body {
+  background-image: url("/assets/images/avatar_background.jpg");
+  background-size: 100%;
+  background-repeat: no-repeat;
+}
+
+#main {
+  padding-top: 120px;
+}
+
+#main h1 {
+  width: 100%;
+  font-family: 'Port Lligat Slab', cursive;
+  font-size: 7em;
+  text-align: center;
+  color: #fff;
+  text-shadow: #888 0.01em 0.05em 0.15em;
+  text-indent: -9999px;
+  background-image: url("/assets/images/avatar_header_400.png");
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+#main h2 {
+  width: 100%;
+  font-size: 2em;
+  text-align: center;
+  font-weight: normal;
+  font: Helvetica, sans-serif;
+  text-shadow: #888 0.01em 0.05em 0.15em;
+  color: #fff;
+  text-transform: uppercase;
+  /*padding-bottom: 40px;*/
+}
+
+#main h3 {
+  width: 100%;
+  font-size: 1em;
+  font-weight: normal;
+  text-align: center;
+}
+
+#about h3 {
+  padding-top: 2px;
+  color: #888;
+  font-size: 16px;
+}
+
+#about h3 strong {
+  text-transform: uppercase;
+}
