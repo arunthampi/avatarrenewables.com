@@ -33,19 +33,15 @@ body {
   /*padding-bottom: 40px;*/
 }
 
-#main h3 {
-  width: 100%;
-  font-size: 1em;
-  font-weight: normal;
-  text-align: center;
-}
-
-#about h3 {
-  padding-top: 2px;
-  color: #888;
-  font-size: 16px;
-}
-
-#about h3 strong {
+#footer {
+  width: 500px;
+  margin: 15px 36%;
+  padding-top: 36px;
+  text-shadow: #888 0.01em 0.05em 0.15em;
   text-transform: uppercase;
 }
+
+#footer a {
+  color: #fff;
+}
+
