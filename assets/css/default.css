@@ -1,7 +1,24 @@
+html,body {
+  min-height: 100%;
+}
+
 body {
-  background-image: url("/assets/images/avatar_background.jpg");
-  background-size: 100%;
+  background-image: -webkit-gradient(
+    linear,
+    left top,
+    right bottom,
+    color-stop(0, rgb(94,179,255)),
+    color-stop(1, rgb(34,75,156))
+  );
+
+  /*background-image: -o-linear-gradient(bottom, rgb(94,179,255) 0%, rgb(34,75,156) 100%);*/
+  /*background-image: -moz-linear-gradient(bottom, rgb(94,179,255) 0%, rgb(34,75,156) 100%);*/
+  /*background-image: -webkit-linear-gradient(bottom, rgb(94,179,255) 0%, rgb(34,75,156) 50%);*/
+  /*background-image: -ms-linear-gradient(bottom, rgb(94,179,255) 0%, rgb(34,75,156) 100%);*/
+  /*background-image: linear-gradient(to bottom, rgb(94,179,255) 0%, rgb(34,75,156) 100%);*/
+
   background-repeat: no-repeat;
+  background-position: center;
 }
 
 #main {
