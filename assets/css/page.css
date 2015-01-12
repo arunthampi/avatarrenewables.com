@@ -28,3 +28,7 @@ only screen and (min-device-pixel-ratio: 2) {
     background-size: 220px 32px;
   }
 }
+
+#content {
+  padding-top: 15px;
+}
