@@ -32,3 +32,7 @@ only screen and (min-device-pixel-ratio: 2) {
 #content {
   padding-top: 15px;
 }
+
+.bio {
+  padding-top: 30px;
+}
