@@ -27,15 +27,7 @@ body {
 
 #main h1 {
   width: 100%;
-  font-family: 'Port Lligat Slab', cursive;
-  font-size: 7em;
   text-align: center;
-  color: #fff;
-  text-shadow: #888 0.01em 0.05em 0.15em;
-  text-indent: -9999px;
-  background-image: url("/assets/images/avatar_header_500.png");
-  background-repeat: no-repeat;
-  background-position: center;
 }
 
 #main h2 {

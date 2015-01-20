@@ -3,14 +3,6 @@
   padding-bottom: 0;
 }
 
-#header h1 {
-  text-indent: -9999px;
-  background-image: url("/assets/images/avatar_page_header.png");
-  background-repeat: no-repeat;
-  background-size: 220px 32px;
-  margin-top: 25px;
-}
-
 #header-links {
   text-align: right;
   margin-top: 35px;
