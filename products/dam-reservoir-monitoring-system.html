@@ -30,23 +30,29 @@
       <li role="presentation"><a href="/products/data-acquisition.html">Data Acquisition Unit</a></li>
       <li role="presentation"><a href="/products/water-current-meter.html">Open Channel Water Current Meter</a></li>
       <li role="presentation"><a href="/products/modbus-slave-rtu.html">Modbus Slave Remote Terminal Unit (RTU)</a></li>
-      <li role="presentation" class="active"><a href="/products/six-channel-data-logger.html">Six Channel Data Logger</a></li>
+      <li role="presentation"><a href="/products/six-channel-data-logger.html">Six Channel Data Logger</a></li>
       <li role="presentation"><a href="/products/smart-event-monitor.html">Smart Event Monitor</a></li>
       <li role="presentation"><a href="/products/smart-e-communicator.html">Smart E-Communicator</a></li>
-      <li role="presentation"><a href="/products/dam-reservoir-monitoring-system.html">Dam Reservoir Monitoring System</a></li>
+      <li role="presentation" class="active"><a href="/products/dam-reservoir-monitoring-system.html">Dam Reservoir Monitoring System</a></li>
     </ul>
 
-    <h3>Six Channel Data Logger</h3>
+    <h3>Dam Reservoir Monitoring System</h3>
     <p>
-      This a low-cost stand-alone Data Logger for industrial applications. It can accept 6 analog inputs that can be either 4-20mA or 1-5 V industrial standard.
+      The idea is to read Level data from already installed sensors and convey it to a web based application that can indicate these parameters on a conventional mobile phone or a remote PC that has internet connectivity. However, the application will be using the GSM/public domain and AR cannot guarantee the integrity of data.
     </p>
 
     <p>
-      The built-in backlit LCD displays all values in engineering units. The 10-bit raw values for the inputs are stored with timestamp (DD/MM/20YY HH:MM:SS) in a micro SD card in CSV file format. Typically an 8-GB card can store 1 year's data sampled at 1 second (roughly 2 million samples).
+      In addition to the RTU and the hardware (we have developed the RTUs), it will require a webserver hosting application. The data can be retrieved by the user once he logs in using his ID and password. A small Android software application can be developed to enable this in a mobile phone
     </p>
 
     <p>
-      This format helps in manipulating the data later using Excel or similar spreadsheet applications. The user can set the ranges of each input as well as select the SD-card recording frequency. Push-buttons are provided to configure date/time and ranges as well as to start and stop recording.
+      <ol>
+        <li>Two transcievers to establish connectivity between RTUs</li>
+        <li>One remote Slave RTU</li>
+        <li>One Master RTU as data concentrator (to be developed)</li>
+        <li>One WiFi/GSM dongle and SIM card</li>
+        <li>Two Power supplies 230VAC to 12VDC/1Amp for the RTUs.</li>
+      </ol>
     </p>
 
     <p>This product will be commercially available very soon.</p>
