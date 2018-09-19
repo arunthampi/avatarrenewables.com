@@ -47,13 +47,22 @@ body {
   position: absolute;
   left: 0;
   right: 0;
-  bottom: 20%;
+  bottom: 10%;
   width: 500px;
   margin: 0 auto;
   padding-top: 36px;
   text-shadow: #888 0.01em 0.05em 0.15em;
   text-transform: uppercase;
   text-align: center;
+}
+
+#footer p {
+  color: #fff;
+}
+
+#footer .association {
+  float: none;
+  margin: 0 auto;
 }
 
 #footer a {
