@@ -47,7 +47,7 @@ body {
   position: absolute;
   left: 0;
   right: 0;
-  bottom: 10%;
+  bottom: 8%;
   width: 500px;
   margin: 0 auto;
   padding-top: 36px;
@@ -58,6 +58,7 @@ body {
 
 #footer p {
   color: #fff;
+  margin-top: 20px;
 }
 
 #footer .association {
