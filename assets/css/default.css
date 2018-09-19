@@ -7,16 +7,16 @@ body {
     linear,
     left top,
     right bottom,
-    color-stop(0, rgb(94,179,255)),
-    color-stop(1, rgb(34,75,156))
-  );
+    color-stop(0, rgb(94,179,255,0.5)),
+    color-stop(1, rgb(34,75,156,0.3))
+  ), url('../images/home-bg.jpg');
 
   /*background-image: -o-linear-gradient(bottom, rgb(94,179,255) 0%, rgb(34,75,156) 100%);*/
   /*background-image: -moz-linear-gradient(bottom, rgb(94,179,255) 0%, rgb(34,75,156) 100%);*/
   /*background-image: -webkit-linear-gradient(bottom, rgb(94,179,255) 0%, rgb(34,75,156) 50%);*/
   /*background-image: -ms-linear-gradient(bottom, rgb(94,179,255) 0%, rgb(34,75,156) 100%);*/
   /*background-image: linear-gradient(to bottom, rgb(94,179,255) 0%, rgb(34,75,156) 100%);*/
-
+  background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
 }
@@ -55,4 +55,3 @@ body {
 #footer a {
   color: #fff;
 }
-
