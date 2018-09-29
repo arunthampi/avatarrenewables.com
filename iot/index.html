@@ -443,11 +443,11 @@ function loadChannelHistory(sentChannelIndex,channelNumber,key,sentFieldList,sen
       <select id="Channel Select">
       </select>
       <select id="Loads">
-        <option value="1">1 Load</option>
+        <option value="1" selected="selected">1 Load</option>
         <option value="2">2 Loads</option>
         <option value="3">3 Loads</option>
         <option value="4">4 Loads</option>
-        <option value="5" selected="selected">5 Loads</option>
+        <option value="5">5 Loads</option>
         <option value="6">6 Loads</option>
         <option value="7">7 Loads</option>
         <option value="8">8 Loads</option>
@@ -462,7 +462,11 @@ function loadChannelHistory(sentChannelIndex,channelNumber,key,sentFieldList,sen
       </select>
       <input id="Update" name="Update" type="checkbox" checked="true"><span style="font-family: Lucida Grande;">Update
         Chart</span> <span id="Latency" style="font-family: Lucida Grande;">(Latency)</span>
-        <label class="footer-label">Avatar Renewables Pvt Ltd</label>
+        <span class="footer-span">
+
+        <label>Avatar Renewables Pvt Ltd</label>
+              <img id="avatar-logo" src='D:\AVATAR\WebInfo\testsite\Avatar_logo.jpg' height="60"/>
+      </span>
     </div>
   </body>
 </html>
@@ -471,10 +475,22 @@ function loadChannelHistory(sentChannelIndex,channelNumber,key,sentFieldList,sen
     display:none;
     content: ""
   }
-  .footer-label{
-    font-size: 10px;
+  .footer-span{
+    font-size: 16px;
     float:right;
-    margin-right: 20px;
+    margin-right: 40px;
+    color: #0e47a3;
+    font-weight: bold;
+    font-family: Lucida Grande;
+  }
+  .footer-span label{
+    float:left;
+    margin-right: 40px;
+    margin-top: 40px;
+  }
+
+  #avatar-logo{
+    float:left;
   }
 
 </style>
