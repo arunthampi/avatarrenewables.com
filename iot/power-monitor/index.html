@@ -22,7 +22,72 @@ var channelsLoaded = 0;
 // fieldList shows which field you want to load, and which axis to display that field on,
 // the 'T' Temperature left axis, or the 'O' Other right axis.
 var channelKeys =[];
-var api_key = 'SHIF9KRBD8RL0AM7';
+var channelsList=[];
+var pml1_api_key = 'SHIF9KRBD8RL0AM7';
+var iaq1_api_key= 'A9EX80YHDV4IJ4I8';
+var api_key_dict = {
+  'iaq-1': 'A9EX80YHDV4IJ4I8',
+  'pml-1': 'SHIF9KRBD8RL0AM7'
+}
+var  chart_axes = [{
+            title: {
+                text: 'Voltage-Current Group'
+            },
+            id: 'Y2',
+            min: 0,
+            // max: 300,
+            offset:35
+    }, {
+            title: {
+                text: 'Power Group'
+            },
+            opposite: false,
+            offset:0,
+            id: 'Y1'
+    }];
+var channel_data =[
+  {
+   'api_key': 'A9EX80YHDV4IJ4I8',
+   'header': 'Indoor Air Quality Monitor - Logger',
+   'channelNumber': 440752,
+   'yaxes': [{
+            title: {
+                text: 'Humidity-Temperature'
+            },
+            opposite: false,
+            offset:0,
+            id: 'Y3'
+    }, {
+            title: {
+                text: 'eCO2-TVOC'
+            },
+
+            offset:35,
+            id: 'Y4'
+    }]
+  },
+  {
+   'api_key': 'SHIF9KRBD8RL0AM7',
+   'header': 'Power Monitor - Logger',
+   'channelNumber': 543288,
+   'yaxes': [{
+            title: {
+                text: 'Voltage-Current Group'
+            },
+            id: 'Y2',
+            min: 0,
+            // max: 300,
+            offset:35
+    }, {
+            title: {
+                text: 'Power Group'
+            },
+            opposite: false,
+            offset:0,
+            id: 'Y1'
+    }]
+  }
+]
 // GET https://api.thingspeak.com/channels/543288/status.json?api_key=SHIF9KRBD8RL0AM7
 // GET https://api.thingspeak.com/channels/543288/fields/1.json?api_key=SHIF9KRBD8RL0AM7&results=2
 
@@ -35,8 +100,13 @@ var api_key = 'SHIF9KRBD8RL0AM7';
 //   fieldList:[{field:1,axis:'T'},{field:2,axis:'O'},{field:3,axis:'O'},//{field:4,axis:'O'},{field:5,axis:'O'},{field:6,axis:'O'}]});
 
 
-channelKeys.push({channelNumber:543288, name:'EMC-PML-1',key:api_key,
+channelsList.push({channelNumber:543288, name:'EMC-PML-1',key:pml1_api_key,
                   fieldList:[{field:1,axis:'Y1'},{field:2,axis:'Y1'},{field:3,axis:'Y2'},{field:4,axis:'Y2'},{field:5,axis:'Y2'},{field:6,axis:'Y2'},{field:7,axis:'Y2'},{field:8,axis:'Y2'}]});
+
+channelsList.push({channelNumber:440752, name:'EMC-IAQ-1',key:iaq1_api_key,
+                  fieldList:[{field:1,axis:'Y3'},{field:2,axis:'Y3'},{field:3,axis:'Y4'},{field:4,axis:'Y4'},{field:5,axis:'Y4'},{field:6,axis:'Y4'}]});
+channelKeys.push(channelsList[0]);
+
 
 // user's timezone offset
 var myOffset = new Date().getTimezoneOffset();
@@ -65,7 +135,62 @@ function HideAll(){
       //  This is where the chart is generated.
 $(document).ready(function()
 {
- //Add Channel Load Menu
+  populate_channels_dropdown();
+  populate_channelKeys();
+  function get_chart_axes(){
+     var channel_no = $('#select-channel').find(":selected").val();
+      $.each( channel_data, function( i, l ){
+        if (l['channelNumber'] == channel_no) {
+                chart_axes = l['yaxes'];
+                $('#page-header').text(l['header'])
+            }
+      });
+  }
+   function update_chart_data(){
+
+  }
+
+
+  function populate_channels_dropdown() {
+  // var channels_drop_down = document.getElementById("Channel Select");
+  var channels_drop_down = document.getElementById("select-channel");
+  for (var channelIndex=0; channelIndex<channelsList.length; channelIndex++)  // iterate through each channel
+   {
+     window.console && console.log('Name',channelsList[channelIndex].name);
+     var menuOption =new Option(channelsList[channelIndex].name,channelsList[channelIndex].channelNumber);
+     channels_drop_down.options.add(menuOption,channelIndex);
+   }
+
+}
+
+$('#select-channel').on('change', function(){
+  channelsLoaded = 0;
+  channelKeys = [];
+  console.log(chart_axes);
+
+  get_chart_axes();
+  console.log(chart_axes);
+  var channel_no = $('#select-channel').find(":selected").val();
+  selectedChannel = {};
+
+  $.each( channelsList, function( i, l ){
+    if (l['channelNumber'] == channel_no) {
+            selectedChannel = l;
+
+        }
+  });
+
+  if (selectedChannel) {
+    channelKeys.push(selectedChannel);
+    populate_channelKeys();
+    // update_chart_data();
+  }
+
+
+});
+
+function populate_channelKeys(){
+  //Add Channel Load Menu
  var menu=document.getElementById("Channel Select");
  for (var channelIndex=0; channelIndex<channelKeys.length; channelIndex++)  // iterate through each channel
  {
@@ -93,7 +218,9 @@ $(document).ready(function()
     loadThingSpeakChannel(channelIndex,channelKeys[channelIndex].channelNumber,channelKeys[channelIndex].key,channelKeys[channelIndex].fieldList);
 
   }
- //window.console && console.log('Channel Keys',channelKeys);
+}
+
+  //window.console && console.log('Channel Keys',channelKeys);
 
  // load the most recent 2500 points (fast initial load) from a ThingSpeak channel into a data[] array and return the data[] array
  function loadThingSpeakChannel(sentChannelIndex,channelNumber,key,sentFieldList) {
@@ -126,7 +253,9 @@ $(document).ready(function()
      channelKeys[channelIndex].fieldList=fieldList;
      channelKeys[channelIndex].loaded=true;
      channelsLoaded++;
+
      window.console && console.log('channels Loaded:',channelsLoaded);
+     window.console && console.log('channels channelKeys.length:',channelKeys.length);
      window.console && console.log('channel index:',channelIndex);
      if (channelsLoaded==channelKeys.length){createChart();}
 	 })
@@ -278,22 +407,22 @@ $(document).ready(function()
         text: 'test'
 			}
 		},
-		yAxis: [{
-            title: {
-                text: 'Voltage-Current Group'
-            },
-            id: 'Y2',
-            min: 0,
-            // max: 300,
-            offset:35
-    }, {
-            title: {
-                text: 'Power Group'
-            },
-            opposite: false,
-            offset:0,
-            id: 'Y1'
-    }],
+		// yAxis: [{
+  //           title: {
+  //               text: 'Voltage-Current Group'
+  //           },
+  //           id: 'Y2',
+  //           min: 0,
+  //           // max: 300,
+  //           offset:35
+  //   }, {
+  //           title: {
+  //               text: 'Power Group'
+  //           },
+  //           opposite: false,
+  //           offset:0,
+  //           id: 'Y1'
+  //   }],
 		exporting: {
 		  enabled: true,
       csv: {
@@ -328,7 +457,9 @@ $(document).ready(function()
   }
 	// set chart labels here so that decoding occurs properly
 	//chartOptions.title.text = data.channel.name;
-	chartOptions.xAxis.title.text = 'Date';
+  chartOptions.xAxis.title.text = 'Date';
+
+  chartOptions.yAxis = chart_axes;
 
 	// draw the chart
   dynamicChart = new Highcharts.StockChart(chartOptions);
@@ -428,7 +559,7 @@ function loadChannelHistory(sentChannelIndex,channelNumber,key,sentFieldList,sen
     <title>AVATAR RENEWABLES</title>
   </head>
   <body style="                      background-color: white;">
-        <h3 style="text-align:center;padding:0;text-decoration:underline">POWER MONITOR-LOGGER</h3>
+        <h3 id="page-header" style="">POWER MONITOR-LOGGER</h3>
 
     <div id="chart-container" style="height: 600px;"><br>
       Highstock Chart Here<br>
@@ -440,7 +571,9 @@ function loadChannelHistory(sentChannelIndex,channelNumber,key,sentFieldList,sen
         name="Load More Data"
         onclick="loadOneChannel();">Load
         More Historical Data </button>
-      <select id="Channel Select">
+      <select id='select-channel'>
+      </select>
+      <select id="Channel Select" hidden="true">
       </select>
       <select id="Loads">
         <option value="1" selected="selected">1 Load</option>
@@ -491,6 +624,10 @@ function loadChannelHistory(sentChannelIndex,channelNumber,key,sentFieldList,sen
 
   #avatar-logo{
     float:left;
+  }
+  #page-header {
+    text-transform: uppercase;
+    text-align:center;padding:0;text-decoration:underline;
   }
 
 </style>
