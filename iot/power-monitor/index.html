@@ -36,7 +36,7 @@ var api_key = 'SHIF9KRBD8RL0AM7';
 
 
 channelKeys.push({channelNumber:543288, name:'EMC-PML-1',key:api_key,
-                  fieldList:[{field:1,axis:'Y1'},{field:2,axis:'Y1'},{field:3,axis:'Y1'},{field:4,axis:'Y2'},{field:5,axis:'Y2'},{field:6,axis:'Y2'},{field:7,axis:'Y2'},{field:8,axis:'Y2'}]});
+                  fieldList:[{field:1,axis:'Y1'},{field:2,axis:'Y1'},{field:3,axis:'Y2'},{field:4,axis:'Y2'},{field:5,axis:'Y2'},{field:6,axis:'Y2'},{field:7,axis:'Y2'},{field:8,axis:'Y2'}]});
 
 // user's timezone offset
 var myOffset = new Date().getTimezoneOffset();
@@ -284,7 +284,7 @@ $(document).ready(function()
             },
             id: 'Y2',
             min: 0,
-            max: 500,
+            // max: 300,
             offset:35
     }, {
             title: {
