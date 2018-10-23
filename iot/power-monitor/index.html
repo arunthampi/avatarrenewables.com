@@ -1,4 +1,5 @@
 
+
 <!DOCTYPE html>
 <html>
   <head>
@@ -27,6 +28,7 @@ var pml1_api_key = 'SHIF9KRBD8RL0AM7';
 var iaq1_api_key= 'A9EX80YHDV4IJ4I8';
 var api_key_dict = {
   'iaq-1': 'A9EX80YHDV4IJ4I8',
+  'iaq-2': '4SVELMSN8FAMOA8F',
   'pml-1': 'SHIF9KRBD8RL0AM7',
   'pml-2': '407U1O0Y93RHOPXE',
 }
@@ -51,6 +53,26 @@ var channel_data =[
    'api_key': 'A9EX80YHDV4IJ4I8',
    'header': 'Indoor Air Quality Monitor - Logger',
    'channelNumber': 440752,
+   'yaxes': [{
+            title: {
+                text: 'Humidity-Temperature'
+            },
+            opposite: false,
+            offset:0,
+            id: 'Y3'
+    }, {
+            title: {
+                text: 'eCO2-TVOC'
+            },
+        
+            offset:0,
+            id: 'Y4'
+    }]
+  },
+  {
+   'api_key': '4SVELMSN8FAMOA8F',
+   'header': 'Indoor Air Quality Monitor - Logger',
+   'channelNumber': 605081,
    'yaxes': [{
             title: {
                 text: 'Humidity-Temperature'
@@ -130,6 +152,9 @@ channelsList.push({channelNumber:595868, name:'EMC-PML-2',key:api_key_dict['pml-
                   fieldList:[{field:1,axis:'Y1'},{field:2,axis:'Y1'},{field:3,axis:'Y2'},{field:4,axis:'Y2'},{field:5,axis:'Y2'},{field:6,axis:'Y2'},{field:7,axis:'Y2'},{field:8,axis:'Y2'}]});
 
 channelsList.push({channelNumber:440752, name:'EMC-IAQ-1',key:iaq1_api_key,
+                  fieldList:[{field:1,axis:'Y3'},{field:2,axis:'Y3'},{field:3,axis:'Y4'},{field:4,axis:'Y4'},{field:5,axis:'Y4'},{field:6,axis:'Y4'}]});  
+
+channelsList.push({channelNumber:605081, name:'EMC-IAQ-2',key:api_key_dict['iaq-2'],
                   fieldList:[{field:1,axis:'Y3'},{field:2,axis:'Y3'},{field:3,axis:'Y4'},{field:4,axis:'Y4'},{field:5,axis:'Y4'},{field:6,axis:'Y4'}]});  
 
 
@@ -624,10 +649,9 @@ function loadChannelHistory(sentChannelIndex,channelNumber,key,sentFieldList,sen
       <input id="Update" name="Update" type="checkbox" checked="true"><span style="font-family: Lucida Grande;">Update
         Chart</span> <span id="Latency" style="font-family: Lucida Grande;">(Latency)</span>
         <span class="footer-span">
-        <label>Avatar Renewables</label>
-              <img id="avatar-logo" src='avatar_logo.jpg' height="60"/>
-
-      </span>
+          <label>Avatar Renewables</label>
+          <img id="avatar-logo" src='avatar_logo.jpg' height="60"/>
+        </span>
     </div>
   </body>
 </html>
