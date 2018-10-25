@@ -34,7 +34,7 @@ var api_key_dict = {
 }
 var  chart_axes = [{
             title: {
-                text: 'Voltage-Current Group'
+                text: 'Voltage-Current'
             },
             id: 'Y2',
             min: 0,
@@ -42,12 +42,21 @@ var  chart_axes = [{
             offset:35
     }, {
             title: {
-                text: 'Power Group'
+                text: 'Watt'
             },
             opposite: false,
             offset:0,
             id: 'Y1'
-    }];
+    },
+    {
+            title: {
+                text: 'KWh'
+            },
+            opposite: false,
+            offset:50,
+            id: 'Y5'
+    }
+  ];
 var channel_data =[
   {
    'api_key': 'A9EX80YHDV4IJ4I8',
@@ -95,7 +104,7 @@ var channel_data =[
    'channelNumber': 543288,
    'yaxes': [{
             title: {
-                text: 'Voltage-Current Group'
+                text: 'Voltage-Current'
             },
             id: 'Y2',
             min: 0,
@@ -103,11 +112,19 @@ var channel_data =[
             offset:35
     }, {
             title: {
-                text: 'Power Group'
+                text: 'Watt'
             },
             opposite: false,
             offset:0,
             id: 'Y1'
+    },
+    {
+            title: {
+                text: 'KWh'
+            },
+            opposite: false,
+            offset:50,
+            id: 'Y5'
     }]
   },
   {
@@ -116,7 +133,7 @@ var channel_data =[
    'channelNumber': 595868,
    'yaxes': [{
             title: {
-                text: 'Voltage-Current Group'
+                text: 'Voltage-Current'
             },
             id: 'Y2',
             min: 0,
@@ -124,11 +141,19 @@ var channel_data =[
             offset:35
     }, {
             title: {
-                text: 'Power Group'
+                text: 'Watt'
             },
             opposite: false,
             offset:0,
             id: 'Y1'
+    },
+    {
+            title: {
+                text: 'KWh'
+            },
+            opposite: false,
+            offset:50,
+            id: 'Y5'
     }]
   }
 ]
@@ -145,11 +170,11 @@ var channel_data =[
 
 
 channelsList.push({channelNumber:543288, name:'EMC-PML-1',key:pml1_api_key,
-                  fieldList:[{field:1,axis:'Y1'},{field:2,axis:'Y1'},{field:3,axis:'Y2'},{field:4,axis:'Y2'},{field:5,axis:'Y2'},{field:6,axis:'Y2'},{field:7,axis:'Y2'},{field:8,axis:'Y2'}]});
+                  fieldList:[{field:1,axis:'Y1'},{field:2,axis:'Y5'},{field:3,axis:'Y2'},{field:4,axis:'Y2'},{field:5,axis:'Y2'},{field:6,axis:'Y2'},{field:7,axis:'Y2'},{field:8,axis:'Y2'}]});
  
 
 channelsList.push({channelNumber:595868, name:'EMC-PML-2',key:api_key_dict['pml-2'],
-                  fieldList:[{field:1,axis:'Y1'},{field:2,axis:'Y1'},{field:3,axis:'Y2'},{field:4,axis:'Y2'},{field:5,axis:'Y2'},{field:6,axis:'Y2'},{field:7,axis:'Y2'},{field:8,axis:'Y2'}]});
+                  fieldList:[{field:1,axis:'Y1'},{field:2,axis:'Y5'},{field:3,axis:'Y2'},{field:4,axis:'Y2'},{field:5,axis:'Y2'},{field:6,axis:'Y2'},{field:7,axis:'Y2'},{field:8,axis:'Y2'}]});
 
 channelsList.push({channelNumber:440752, name:'EMC-IAQ-1',key:iaq1_api_key,
                   fieldList:[{field:1,axis:'Y3'},{field:2,axis:'Y3'},{field:3,axis:'Y4'},{field:4,axis:'Y4'},{field:5,axis:'Y4'},{field:6,axis:'Y4'}]});  
@@ -382,7 +407,7 @@ function populate_channelKeys(){
                     console.log(lastDataIndex);
                     console.log(channelKeys[0].fieldList[1].data[lastDataIndex]);
                     console.log("THE KWH VALUE = "+kwhTitle);
-                    dynamicChart.setTitle({text: "KWh = "+kwhTitle});
+                    dynamicChart.setTitle({text: `Energy = ${kwhTitle} KWh`});
                   }
                 });
                })(channelIndex);
@@ -526,9 +551,10 @@ function populate_channelKeys(){
     console.log(lastDataIndex);
     console.log(channelKeys[0].fieldList[1].data[lastDataIndex]);
     console.log("THE KWH VALUE = "+kwhTitle);
-    chartOptions.title.text = "KWh = "+kwhTitle;
+    chartOptions.title.text = `Energy = ${kwhTitle} KWh`;
     chartOptions.title.style = {
       color: 'red',
+      fontWeight: '800'
     }
   }
 	// set chart labels here so that decoding occurs properly
