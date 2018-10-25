@@ -352,14 +352,15 @@ function populate_channelKeys(){
                       var v = eval(fieldStr);
                       p[0] = getChartDate(data.created_at);
                       p[1] = parseFloat(v);
+                      var last_date;
                       // get the last date if possible
                       if (dynamicChart.series[chartSeriesIndex].data.length > 0) 
                       { 
-                        last_date = dynamicChart.series[chartSeriesIndex].data[dynamicChart.series[chartSeriesIndex].data.length-1].x; 
+                        last_date = dynamicChart.series[chartSeriesIndex].data[dynamicChart.series[chartSeriesIndex].data.length-1][0]; 
                       }
                       var shift = false ; //default for shift
                       // if a numerical value exists and it is a new date, add it
-                      if (!isNaN(parseInt(v)) && (p[0] != last_date)) 
+                      if (!isNaN(parseInt(v)) &&  (p[0] != last_date)) 
                       {
                         dynamicChart.series[chartSeriesIndex].addPoint(p, true, shift);
                       }   
@@ -371,8 +372,18 @@ function populate_channelKeys(){
                     //window.console && console.log('update series name:',dynamicChart.series[chartSeriesName].name);
                     //window.console && console.log('channel keys name:',channelKeys[channelIndex].fieldList[fieldIndex].name);
                   }
-                  
-                  
+                  /*(window.console && console.log('inside interval field name:', channelKeys[1].fieldList[1].data[2499][1]);
+                  var kwhTitle = parseFloat(channelKeys[0].fieldList[3].data[2499][1]);
+                  dynamicChart.series[chartSeriesIndex].setTitle({ text: "KWh = "+kwhTitle});*/
+                  if(channelKeys[0].name.includes("PML")) {
+                    window.console && console.log('getJSON field name:', channelKeys[0]);
+                    var lastDataIndex = channelKeys[0].fieldList[1].data.length-1;
+                    var kwhTitle = parseFloat(channelKeys[0].fieldList[1].data[lastDataIndex][1]);
+                    console.log(lastDataIndex);
+                    console.log(channelKeys[0].fieldList[1].data[lastDataIndex]);
+                    console.log("THE KWH VALUE = "+kwhTitle);
+                    dynamicChart.setTitle({text: "KWh = "+kwhTitle});
+                  }
                 });
                })(channelIndex);
               }
@@ -506,6 +517,18 @@ function populate_channelKeys(){
                                 yAxis:channelKeys[channelIndex].fieldList[fieldIndex].axis,
                                 //visible:false,
                               name: channelKeys[channelIndex].fieldList[fieldIndex].name});
+    }
+  }
+  if(channelKeys[0].name.includes("PML")) {
+    window.console && console.log('getJSON field name:', channelKeys[0]);
+    var lastDataIndex = channelKeys[0].fieldList[1].data.length-1;
+    var kwhTitle = parseFloat(channelKeys[0].fieldList[1].data[lastDataIndex][1]);
+    console.log(lastDataIndex);
+    console.log(channelKeys[0].fieldList[1].data[lastDataIndex]);
+    console.log("THE KWH VALUE = "+kwhTitle);
+    chartOptions.title.text = "KWh = "+kwhTitle;
+    chartOptions.title.style = {
+      color: 'red',
     }
   }
 	// set chart labels here so that decoding occurs properly
