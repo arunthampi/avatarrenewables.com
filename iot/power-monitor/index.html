@@ -452,7 +452,10 @@ function populate_channelKeys(){
 		},
     title: {
 			text: ''
-		},
+    },
+    subtitle: {
+      text: ''
+    },
 		plotOptions: {
 		  line: {
         gapSize:5
@@ -560,13 +563,18 @@ function populate_channelKeys(){
     window.console && console.log('getJSON field name:', channelKeys[0]);
     var lastDataIndex = channelKeys[0].fieldList[1].data.length-1;
     var kwhTitle = parseFloat(channelKeys[0].fieldList[1].data[lastDataIndex][1]);
-    console.log(lastDataIndex);
-    console.log(channelKeys[0].fieldList[1].data[lastDataIndex]);
-    console.log("THE KWH VALUE = "+kwhTitle);
+    var powerTitle = parseFloat(channelKeys[0].fieldList[0].data[lastDataIndex][1]);
+
     chartOptions.title.text = `Energy = ${kwhTitle} KWh`;
+    chartOptions.subtitle.text = `Power = ${powerTitle} WATTS`;
     chartOptions.title.style = {
       color: 'red',
       fontWeight: '800'
+    }
+    chartOptions.subtitle.style = {
+      color: 'red',
+      fontWeight: '800',
+      fontSize: '16px'
     }
   }
 	// set chart labels here so that decoding occurs properly
