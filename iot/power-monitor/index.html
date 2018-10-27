@@ -404,10 +404,15 @@ function populate_channelKeys(){
                   if(channelKeys[0].name.includes("PML")) {
                     window.console && console.log('getJSON field name:', channelKeys[0]);
                     var lastDataIndex = channelKeys[0].fieldList[1].data.length-1;
-                    var kwhTitle = parseFloat(channelKeys[0].fieldList[1].data[lastDataIndex][1]);
-
+                    var kwhTitle = channelKeys[0].fieldList[1].data.length > 0 ? 
+                    `${parseFloat(channelKeys[0].fieldList[1].data[lastDataIndex][1])} KWh` :
+                    'NO DATA'
+                    var powerTitle = channelKeys[0].fieldList[0].data.length > 0 ? 
+                    `${parseFloat(channelKeys[0].fieldList[0].data[lastDataIndex][1])} WATTS` :
+                    'NO DATA'
                     console.log("THE KWH VALUE = "+kwhTitle);
-                    dynamicChart.setTitle({text: `Energy = ${kwhTitle} KWh`});
+                    dynamicChart.setTitle({text: `Energy = ${kwhTitle}`}, { text: `Power = ${powerTitle}` });
+
                   }
                 });
                })(channelIndex);
@@ -562,11 +567,18 @@ function populate_channelKeys(){
   if(channelKeys[0].name.includes("PML")) {
     window.console && console.log('getJSON field name:', channelKeys[0]);
     var lastDataIndex = channelKeys[0].fieldList[1].data.length-1;
-    var kwhTitle = parseFloat(channelKeys[0].fieldList[1].data[lastDataIndex][1]);
-    var powerTitle = parseFloat(channelKeys[0].fieldList[0].data[lastDataIndex][1]);
+    console.log(channelKeys[0].fieldList[1].data[0])
+    console.log(lastDataIndex)
+    
+    var kwhTitle = channelKeys[0].fieldList[1].data.length > 0 ? 
+                    `${parseFloat(channelKeys[0].fieldList[1].data[lastDataIndex][1])} KWh` :
+                    'NO DATA'
+    var powerTitle = channelKeys[0].fieldList[0].data.length > 0 ? 
+                    `${parseFloat(channelKeys[0].fieldList[0].data[lastDataIndex][1])} WATTS` :
+                    'NO DATA'
 
-    chartOptions.title.text = `Energy = ${kwhTitle} KWh`;
-    chartOptions.subtitle.text = `Power = ${powerTitle} WATTS`;
+    chartOptions.title.text = `Energy = ${kwhTitle}`;
+    chartOptions.subtitle.text = `Power = ${powerTitle}`;
     chartOptions.title.style = {
       color: 'red',
       fontWeight: '800'
