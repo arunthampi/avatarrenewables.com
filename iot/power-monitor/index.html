@@ -170,17 +170,17 @@ var channel_data =[
 //   fieldList:[{field:1,axis:'T'},{field:2,axis:'O'},{field:3,axis:'O'},//{field:4,axis:'O'},{field:5,axis:'O'},{field:6,axis:'O'}]});
 
 
-channelsList.push({channelNumber:543288, name:'EMC-PML-1',key:pml1_api_key,
+channelsList.push({channelNumber:543288, name:'PML-1',key:pml1_api_key,
                   fieldList:[{field:1,axis:'Y1'},{field:2,axis:'Y5'},{field:3,axis:'Y2'},{field:4,axis:'Y2'},{field:5,axis:'Y2'},{field:6,axis:'Y2'},{field:7,axis:'Y2'},{field:8,axis:'Y2'}]});
  
 
-channelsList.push({channelNumber:595868, name:'EMC-PML-2',key:api_key_dict['pml-2'],
+channelsList.push({channelNumber:595868, name:'PML-2',key:api_key_dict['pml-2'],
                   fieldList:[{field:1,axis:'Y1'},{field:2,axis:'Y5'},{field:3,axis:'Y2'},{field:4,axis:'Y2'},{field:5,axis:'Y2'},{field:6,axis:'Y2'},{field:7,axis:'Y2'},{field:8,axis:'Y2'}]});
 
-channelsList.push({channelNumber:440752, name:'EMC-IAQ-1',key:iaq1_api_key,
+channelsList.push({channelNumber:440752, name:'IAQ-1',key:iaq1_api_key,
                   fieldList:[{field:1,axis:'Y3'},{field:2,axis:'Y3'},{field:3,axis:'Y4'},{field:4,axis:'Y4'},{field:5,axis:'Y4'},{field:6,axis:'Y4'}]});  
 
-channelsList.push({channelNumber:605081, name:'EMC-IAQ-2',key:api_key_dict['iaq-2'],
+channelsList.push({channelNumber:605081, name:'IAQ-2',key:api_key_dict['iaq-2'],
                   fieldList:[{field:1,axis:'Y3'},{field:2,axis:'Y3'},{field:3,axis:'Y4'},{field:4,axis:'Y4'},{field:5,axis:'Y4'},{field:6,axis:'Y4'}]});  
 
 
@@ -295,18 +295,17 @@ function populate_channelKeys(){
   {
     channelKeys[channelIndex].loaded = false;  
     loadThingSpeakChannel(channelIndex,channelKeys[channelIndex].channelNumber,channelKeys[channelIndex].key,channelKeys[channelIndex].fieldList);
-    
   }
 }
  
   //window.console && console.log('Channel Keys',channelKeys);
  
- // load the most recent 2500 points (fast initial load) from a ThingSpeak channel into a data[] array and return the data[] array
- function loadThingSpeakChannel(sentChannelIndex,channelNumber,key,sentFieldList) {
+ // load the most recent 8000 points (fast initial load) from a ThingSpeak channel into a data[] array and return the data[] array
+ async function loadThingSpeakChannel(sentChannelIndex,channelNumber,key,sentFieldList) {
    var fieldList= sentFieldList;
    var channelIndex = sentChannelIndex;
    // get the Channel data with a webservice call
- 	$.getJSON('https://api.thingspeak.com/channels/'+channelNumber+'/feed.json?offset=0&amp;results=2500;api_key='+key, function(data) 
+ 	await $.getJSON('https://api.thingspeak.com/channels/'+channelNumber+'/feed.json?offset=0&amp;results=8000;api_key='+key, function(data) 
    {
 	   // if no access
 	   if (data == '-1') {
@@ -339,6 +338,7 @@ function populate_channelKeys(){
      if (channelsLoaded==channelKeys.length){createChart();}
 	 })
    .fail(function() { alert('getJSON request failed! '); });
+   dynamicChart.hideLoading()
  }
  Highcharts.seriesTypes.column.prototype.getExtremesFromAll = true;
  // create the chart when all data is loaded
@@ -554,7 +554,6 @@ function populate_channelKeys(){
   {
     for (var fieldIndex=0; fieldIndex<channelKeys[channelIndex].fieldList.length; fieldIndex++)  // add each field
     {
-      window.console && console.log('Channel '+channelIndex+' field '+fieldIndex);
       chartOptions.series.push({data:channelKeys[channelIndex].fieldList[fieldIndex].data,
                                 index:channelKeys[channelIndex].fieldList[fieldIndex].series,
                                 yAxis:channelKeys[channelIndex].fieldList[fieldIndex].axis,
@@ -611,18 +610,18 @@ function populate_channelKeys(){
     }
   }          
   // add all history
-  //dynamicChart.showLoading("Loading History..." );
-  window.console && console.log('Channels: ',channelKeys.length);
-  for (var channelIndex=0; channelIndex<channelKeys.length; channelIndex++)  // iterate through each channel
-  {
-    window.console && console.log('channelIndex: ',channelIndex);
-    (function(channelIndex)
-      {
-        //load only 1 set of 8000 points
-        loadChannelHistory(channelIndex,channelKeys[channelIndex].channelNumber,channelKeys[channelIndex].key,channelKeys[channelIndex].fieldList,0,1); 
-      }
-    )(channelIndex);
-  }
+  // dynamicChart.showLoading("Loading History..." );
+  // window.console && console.log('Channels: ',channelKeys.length);
+  // for (var channelIndex=0; channelIndex<channelKeys.length; channelIndex++)  // iterate through each channel
+  // {
+  //   window.console && console.log('channelIndex: ',channelIndex);
+  //   (async function(channelIndex)
+  //     {
+  //       //load only 1 set of 8000 points
+  //       await loadChannelHistory(channelIndex,channelKeys[channelIndex].channelNumber,channelKeys[channelIndex].key,channelKeys[channelIndex].fieldList,0,1); 
+  //     }
+  //   )(channelIndex);
+  // }
  }
 });
       
@@ -630,12 +629,14 @@ function loadOneChannel(){
   // load a channel selected in the popUp menu.
   var selectedChannel=document.getElementById("Channel Select");
   var maxLoads=document.getElementById("Loads").value ;
-  var channelIndex = selectedChannel.selectedIndex;
+  // var channelIndex = selectedChannel.selectedIndex;
+  var channelIndex = 0;
+  dynamicChart.showLoading("Loading History..." );
   loadChannelHistory(channelIndex,channelKeys[channelIndex].channelNumber,channelKeys[channelIndex].key,channelKeys[channelIndex].fieldList,0,maxLoads); 
 } 
 
 // load next 8000 points from a ThingSpeak channel and addPoints to a series
-function loadChannelHistory(sentChannelIndex,channelNumber,key,sentFieldList,sentNumLoads,maxLoads) {
+async function loadChannelHistory(sentChannelIndex,channelNumber,key,sentFieldList,sentNumLoads,maxLoads) {
    var numLoads=sentNumLoads
    var fieldList= sentFieldList;
    var channelIndex = sentChannelIndex;
@@ -653,7 +654,7 @@ function loadChannelHistory(sentChannelIndex,channelNumber,key,sentFieldList,sen
    window.console && console.log('sentChannelIndex:',sentChannelIndex);
    window.console && console.log('numLoads:',numLoads);
    // get the Channel data with a webservice call
- 	$.getJSON('https://api.thingspeak.com/channels/'+channelNumber+'/feed.json?offset=0&amp;start=2013-01-20T00:00:00;end='+end+';api_key='+key, function(data) 
+ 	await $.getJSON('https://api.thingspeak.com/channels/'+channelNumber+'/feed.json?offset=0&amp;start=2013-01-20T00:00:00;end='+end+';api_key='+key, function(data) 
    {
 	   // if no access
 	   if (data == '-1') {
@@ -685,13 +686,14 @@ function loadChannelHistory(sentChannelIndex,channelNumber,key,sentFieldList,sen
      numLoads++;
      if (numLoads<maxLoads) {loadChannelHistory(channelIndex,channelNumber,key,fieldList,numLoads,maxLoads);}
 	 });
+   dynamicChart.hideLoading();
 }
 
   </script>
     <title>AVATAR RENEWABLES</title>
   </head>
-  <body style="                      background-color: white;">
-        <h3 id="page-header" style="">POWER MONITOR-LOGGER</h3>
+  <body style="background-color: white;">
+        <h3 id="page-header">POWER MONITOR-LOGGER</h3>
 
     <div id="chart-container" style="height: 600px;"><br>
       Highstock Chart Here<br>
