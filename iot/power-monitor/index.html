@@ -402,17 +402,15 @@ function populate_channelKeys(){
                   var kwhTitle = parseFloat(channelKeys[0].fieldList[3].data[2499][1]);
                   dynamicChart.series[chartSeriesIndex].setTitle({ text: "KWh = "+kwhTitle});*/
                   if(channelKeys[0].name.includes("PML")) {
-                    window.console && console.log('getJSON field name:', channelKeys[0]);
-                    var lastDataIndex = channelKeys[0].fieldList[1].data.length-1;
+                    window.console && console.log('getJSON field name:', data);
                     var kwhTitle = channelKeys[0].fieldList[1].data.length > 0 ? 
-                    `${parseFloat(channelKeys[0].fieldList[1].data[lastDataIndex][1])} KWh` :
+                    `${parseFloat(data.field2)} KWh` :
                     'NO DATA'
                     var powerTitle = channelKeys[0].fieldList[0].data.length > 0 ? 
-                    `${parseFloat(channelKeys[0].fieldList[0].data[lastDataIndex][1])} WATTS` :
+                    `${parseFloat(data.field1)} WATTS` :
                     'NO DATA'
                     console.log("THE KWH VALUE = "+kwhTitle);
                     dynamicChart.setTitle({text: `Energy = ${kwhTitle}`}, { text: `Power = ${powerTitle}` });
-
                   }
                 });
                })(channelIndex);
