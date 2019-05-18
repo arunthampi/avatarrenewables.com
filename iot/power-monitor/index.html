@@ -13,11 +13,7 @@
     <script src="https://rawgithub.com/highslide-software/export-csv/master/export-csv.js"></script>
     <script type="text/javascript">
       
-      // Webpage Javascript to chart multiple ThingSpeak channels on two axis with navigator, load historical data, and export cvs data.
-      // Public Domain, by turgo.
-      //  The charting library is called HighStock.  It is awesome!  HighSoft, the owners say, 
-      //   "Do you want to use Highstock for a personal or non-profit project? Then you can use Highchcarts for 
-      //   free under the  Creative Commons Attribution-NonCommercial 3.0 License. "
+
 var dynamicChart;
 var channelsLoaded = 0;
 // put your ThingSpeak Channel#, Channel Name, and API keys here.
@@ -161,13 +157,6 @@ var channel_data =[
 // GET https://api.thingspeak.com/channels/543288/status.json?api_key=SHIF9KRBD8RL0AM7
 // GET https://api.thingspeak.com/channels/543288/fields/1.json?api_key=SHIF9KRBD8RL0AM7&results=2
 
-
-// channelKeys.push({channelNumber:9, name:'Hans my_house',key:'XXXXXXXXXXXXXXXX',
-//                  fieldList:[{field:1,axis:'O'},{field:2,axis:'T'}]});
-//channelKeys.push({channelNumber:5683, name:'Sam Rogers Solar //System',key:'XXXXXXXXXXXXXXXX',
-//   fieldList:[{field:1,axis:'T'},{field:2,axis:'T'},{field:3,axis:'T'},//{field:4,axis:'T'},{field:5,axis:'T'},{field:6,axis:'T'}]});
-//channelKeys.push({channelNumber:9354, name:'CRYSTAL CITY WEATHER //Fault',key:'XXXXXXXXXXXXXXXX',
-//   fieldList:[{field:1,axis:'T'},{field:2,axis:'O'},{field:3,axis:'O'},//{field:4,axis:'O'},{field:5,axis:'O'},{field:6,axis:'O'}]});
 
 
 channelsList.push({channelNumber:543288, name:'PML-1',key:pml1_api_key,
@@ -391,12 +380,7 @@ function populate_channelKeys(){
                         dynamicChart.series[chartSeriesIndex].addPoint(p, true, shift);
                       }   
                     }
-                    //window.console && console.log('channelKeys:',channelKeys);
-                    //window.console && console.log('chartSeriesIndex:',chartSeriesIndex);
-                    //window.console && console.log('channel index:',channelIndex);
-                    //window.console && console.log('field index:',fieldIndex);
-                    //window.console && console.log('update series name:',dynamicChart.series[chartSeriesName].name);
-                    //window.console && console.log('channel keys name:',channelKeys[channelIndex].fieldList[fieldIndex].name);
+
                   }
                   /*(window.console && console.log('inside interval field name:', channelKeys[1].fieldList[1].data[2499][1]);
                   var kwhTitle = parseFloat(channelKeys[0].fieldList[3].data[2499][1]);
@@ -502,22 +486,7 @@ function populate_channelKeys(){
         text: 'test'
 			}
 		},
-		// yAxis: [{
-  //           title: {
-  //               text: 'Voltage-Current Group'
-  //           },
-  //           id: 'Y2',
-  //           min: 0,
-  //           // max: 300,
-  //           offset:35
-  //   }, {
-  //           title: {
-  //               text: 'Power Group'
-  //           },
-  //           opposite: false,
-  //           offset:0,
-  //           id: 'Y1'
-  //   }],
+
 		exporting: {
       enabled: true,
       buttons: {
