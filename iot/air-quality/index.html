@@ -29,14 +29,14 @@ var api_key_dict = {
 }
 var  chart_axes = [{
             title: {
-                text: 'Humidity-Temperature'
+                text: 'Humidity-Temperature-AQI'
             },
             opposite: false,
             offset:0,
             id: 'Y1'
     }, {
             title: {
-                text: 'eCO2-TVOC'
+                text: 'eCO2-TVOC-PM2.5-PM10'
             },
         
             offset:0,
@@ -49,14 +49,14 @@ var channel_data =[
    'channelNumber': 812758,
    'yaxes': [{
             title: {
-                text: 'Humidity-Temperature'
+                text: 'Humidity-Temperature-AQI'
             },
             opposite: false,
             offset:0,
             id: 'Y1'
     }, {
             title: {
-                text: 'eCO2-TVOC'
+                text: 'eCO2-TVOC-PM2.5-PM10'
             },
         
             offset:0,
@@ -69,14 +69,14 @@ var channel_data =[
    'channelNumber': 812760,
    'yaxes': [{
             title: {
-                text: 'Humidity-Temperature'
+                text: 'Humidity-Temperature-AQI'
             },
             opposite: false,
             offset:0,
             id: 'Y1'
     }, {
             title: {
-                text: 'eCO2-TVOC'
+                text: 'eCO2-TVOC-PM2.5-PM10'
             },
         
             offset:0,
@@ -89,14 +89,14 @@ var channel_data =[
    'channelNumber': 812917,
    'yaxes': [{
             title: {
-                text: 'Humidity-Temperature'
+                text: 'Humidity-Temperature-AQI'
             },
             opposite: false,
             offset:0,
             id: 'Y1'
     }, {
             title: {
-                text: 'eCO2-TVOC'
+                text: 'eCO2-TVOC-PM2.5-PM10'
             },
         
             offset:0,
@@ -109,7 +109,7 @@ var channel_data =[
    'channelNumber': 812920,
    'yaxes': [{
             title: {
-                text: 'Humidity-Temperature'
+                text: 'Humidity-Temperature-AQI'
             },
             opposite: false,
             offset:0,
@@ -130,17 +130,17 @@ var channel_data =[
 
 
 channelsList.push({channelNumber:812758, name:'AQ-001',key:api_key_dict['aq-001'],
-                  fieldList:[{field:1,axis:'Y1'},{field:2,axis:'Y2'},{field:3,axis:'Y2'},{field:4,axis:'Y2'},{field:5,axis:'Y2'},{field:6,axis:'Y2'}]});  
+                  fieldList:[{field:1,axis:'Y1'},{field:2,axis:'Y2'},{field:3,axis:'Y2'},{field:4,axis:'Y2'},{field:5,axis:'Y2'},{field:6,axis:'Y2'}, {field: 7, axis: 'Y2'}, {field: 8, axis: 'Y2'}]});  
  
 
 channelsList.push({channelNumber:812760, name:'AQ-002',key:api_key_dict['aq-002'],
-                  fieldList:[{field:1,axis:'Y1'},{field:2,axis:'Y1'},{field:3,axis:'Y2'},{field:4,axis:'Y2'},{field:5,axis:'Y2'},{field:6,axis:'Y2'}]});  
+                  fieldList:[{field:1,axis:'Y1'},{field:2,axis:'Y1'},{field:3,axis:'Y2'},{field:4,axis:'Y2'},{field:5,axis:'Y2'},{field:6,axis:'Y2'},{field: 7, axis: 'Y2'}, {field: 8, axis: 'Y2'}]});  
 
 channelsList.push({channelNumber:812917, name:'AQ-003',key:api_key_dict['aq-003'],
-                  fieldList:[{field:1,axis:'Y1'},{field:2,axis:'Y1'},{field:3,axis:'Y2'},{field:4,axis:'Y2'},{field:5,axis:'Y2'},{field:6,axis:'Y2'}]});  
+                  fieldList:[{field:1,axis:'Y1'},{field:2,axis:'Y1'},{field:3,axis:'Y2'},{field:4,axis:'Y2'},{field:5,axis:'Y2'},{field:6,axis:'Y2'},{field: 7, axis: 'Y2'}, {field: 8, axis: 'Y2'}]});  
 
 channelsList.push({channelNumber:812920, name:'AQ-004',key:api_key_dict['aq-004'],
-                  fieldList:[{field:1,axis:'Y1'},{field:2,axis:'Y1'},{field:3,axis:'Y2'},{field:4,axis:'Y2'},{field:5,axis:'Y2'},{field:6,axis:'Y2'}]});  
+                  fieldList:[{field:1,axis:'Y1'},{field:2,axis:'Y1'},{field:3,axis:'Y2'},{field:4,axis:'Y2'},{field:5,axis:'Y2'},{field:6,axis:'Y2'},{field: 7, axis: 'Y2'}, {field: 8, axis: 'Y2'}]});  
 
 
 channelKeys.push(channelsList[0]);
