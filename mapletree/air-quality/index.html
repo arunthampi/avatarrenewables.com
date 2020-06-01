@@ -22,10 +22,8 @@ var channelsLoaded = 0;
 var channelKeys =[];
 var channelsList=[];
 var api_key_dict = {
-  'aq-001': 'Q09FQBF7FL1LWLVJ',
-  'aq-003': 'S92D9YHXVR6NOC9C',
-  'aq-002': '80SNVUCPCMCE3TO0',
-  'aq-004': 'ZL2DUALO3AO8GA7I',
+  'iaq-001': 'VT1C98I3JPMO5BQ3',
+  'iaq-002': 'M33NSHR2BEM01TCX',
 }
 var  chart_axes = [{
             title: {
@@ -44,9 +42,9 @@ var  chart_axes = [{
 }]
 var channel_data =[
   {
-   'api_key': 'Q09FQBF7FL1LWLVJ',
+   'api_key': 'VT1C98I3JPMO5BQ3',
    'header': 'AQ 1 - Monitor',
-   'channelNumber': 812758,
+   'channelNumber': 1071972,
    'yaxes': [{
             title: {
                 text: 'Humidity-Temperature-AQI'
@@ -64,9 +62,9 @@ var channel_data =[
     }]
   },
   {
-   'api_key': '80SNVUCPCMCE3TO0',
+   'api_key': 'M33NSHR2BEM01TCX',
    'header': 'AQ 2 - Monitor',
-   'channelNumber': 812760,
+   'channelNumber': 1072072,
    'yaxes': [{
             title: {
                 text: 'Humidity-Temperature-AQI'
@@ -83,63 +81,17 @@ var channel_data =[
             id: 'Y2'
     }]
   },
-  {
-   'api_key': 'S92D9YHXVR6NOC9C',
-   'header': 'AQ 3 - Monitor',
-   'channelNumber': 812917,
-   'yaxes': [{
-            title: {
-                text: 'Humidity-Temperature-AQI'
-            },
-            opposite: false,
-            offset:0,
-            id: 'Y1'
-    }, {
-            title: {
-                text: 'eCO2-TVOC-PM2.5-PM10'
-            },
-        
-            offset:0,
-            id: 'Y2'
-    }]
-  },
-  {
-   'api_key': 'ZL2DUALO3AO8GA7I',
-   'header': 'AQ 4 - Monitor',
-   'channelNumber': 812920,
-   'yaxes': [{
-            title: {
-                text: 'Humidity-Temperature-AQI'
-            },
-            opposite: false,
-            offset:0,
-            id: 'Y1'
-    }, {
-            title: {
-                text: 'eCO2-TVOC'
-            },
-        
-            offset:0,
-            id: 'Y2'
-    }]
-  }
 ]
 // GET https://api.thingspeak.com/channels/543288/status.json?api_key=80SNVUCPCMCE3TO0
 // GET https://api.thingspeak.com/channels/543288/fields/1.json?api_key=80SNVUCPCMCE3TO0&results=2
 
 
 
-channelsList.push({channelNumber:812758, name:'AQ-001',key:api_key_dict['aq-001'],
+channelsList.push({channelNumber:1071972, name:'IAQ-001',key:api_key_dict['iaq-001'],
                   fieldList:[{field:1,axis:'Y1'},{field:2,axis:'Y2'},{field:3,axis:'Y2'},{field:4,axis:'Y2'},{field:5,axis:'Y2'},{field:6,axis:'Y2'}, {field: 7, axis: 'Y2'}, {field: 8, axis: 'Y2'}]});  
  
 
-channelsList.push({channelNumber:812760, name:'AQ-002',key:api_key_dict['aq-002'],
-                  fieldList:[{field:1,axis:'Y1'},{field:2,axis:'Y1'},{field:3,axis:'Y2'},{field:4,axis:'Y2'},{field:5,axis:'Y2'},{field:6,axis:'Y2'},{field: 7, axis: 'Y2'}, {field: 8, axis: 'Y2'}]});  
-
-channelsList.push({channelNumber:812917, name:'AQ-003',key:api_key_dict['aq-003'],
-                  fieldList:[{field:1,axis:'Y1'},{field:2,axis:'Y1'},{field:3,axis:'Y2'},{field:4,axis:'Y2'},{field:5,axis:'Y2'},{field:6,axis:'Y2'},{field: 7, axis: 'Y2'}, {field: 8, axis: 'Y2'}]});  
-
-channelsList.push({channelNumber:812920, name:'AQ-004',key:api_key_dict['aq-004'],
+channelsList.push({channelNumber:1072072, name:'IAQ-002',key:api_key_dict['iaq-002'],
                   fieldList:[{field:1,axis:'Y1'},{field:2,axis:'Y1'},{field:3,axis:'Y2'},{field:4,axis:'Y2'},{field:5,axis:'Y2'},{field:6,axis:'Y2'},{field: 7, axis: 'Y2'}, {field: 8, axis: 'Y2'}]});  
 
 
@@ -180,7 +132,7 @@ $(document).ready(function()
       $.each( channel_data, function( i, l ){
         if (l['channelNumber'] == channel_no) {
                 chart_axes = l['yaxes'];
-                $('#page-header').text(l['header'])
+                $('#page-header').text(`Mapletree India Management Services Pvt Ltd - ${l['header']}`)
             }
       });
   }
@@ -597,7 +549,7 @@ async function loadChannelHistory(sentChannelIndex,channelNumber,key,sentFieldLi
     <title>AVATAR RENEWABLES</title>
   </head>
   <body style="background-color: white;">
-        <h3 id="page-header">Mapletree India Management Services Pvt Ltd</h3>
+        <h3 id="page-header">Mapletree India Management Services Pvt Ltd - AQ 1 - Monitor</h3>
 
     <div id="chart-container" style="height: 600px;"><br>
       Highstock Chart Here<br>
