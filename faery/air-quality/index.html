@@ -22,7 +22,7 @@ var channelsLoaded = 0;
 var channelKeys =[];
 var channelsList=[];
 var api_key_dict = {
-  'aq-001': '1T8AVHJVZNZ0HCNO',
+  'iaq-001': 'M33NSHR2BEM01TCX',
 }
 var  chart_axes = [{
             title: {
@@ -41,9 +41,9 @@ var  chart_axes = [{
 }]
 var channel_data =[
   {
-   'api_key': '1T8AVHJVZNZ0HCNO',
+   'api_key': 'M33NSHR2BEM01TCX',
    'header': 'AQ 1 - Monitor',
-   'channelNumber': 901852,
+   'channelNumber': 1072072,
    'yaxes': [{
             title: {
                 text: 'Humidity-Temperature-AQI'
@@ -66,9 +66,10 @@ var channel_data =[
 
 
 
-channelsList.push({channelNumber:901852, name:'AQ-001',key:api_key_dict['aq-001'],
-                  fieldList:[{field:1,axis:'Y1'},{field:2,axis:'Y2'},{field:3,axis:'Y2'},{field:4,axis:'Y2'},{field:5,axis:'Y2'},{field:6,axis:'Y2'}, {field: 7, axis: 'Y2'}, {field: 8, axis: 'Y2'}]});  
+ 
 
+channelsList.push({channelNumber:1072072, name:'IAQ-001',key:api_key_dict['iaq-001'],
+                  fieldList:[{field:1,axis:'Y1'},{field:2,axis:'Y1'},{field:3,axis:'Y2'},{field:4,axis:'Y2'},{field:5,axis:'Y2'},{field:6,axis:'Y2'},{field: 7, axis: 'Y2'}, {field: 8, axis: 'Y2'}]});  
 
 
 channelKeys.push(channelsList[0]);
@@ -108,7 +109,7 @@ $(document).ready(function()
       $.each( channel_data, function( i, l ){
         if (l['channelNumber'] == channel_no) {
                 chart_axes = l['yaxes'];
-                $('#page-header').text(l['header'])
+                $('#page-header').text(`Mapletree India Management Services Pvt Ltd - ${l['header']}`)
             }
       });
   }
@@ -525,7 +526,7 @@ async function loadChannelHistory(sentChannelIndex,channelNumber,key,sentFieldLi
     <title>AVATAR RENEWABLES</title>
   </head>
   <body style="background-color: white;">
-        <h3 id="page-header">AQ-Monitor</h3>
+        <h3 id="page-header">Faery Estates - AQ 1 - Indoor Air Quality Monitor</h3>
 
     <div id="chart-container" style="height: 600px;"><br>
       Highstock Chart Here<br>
